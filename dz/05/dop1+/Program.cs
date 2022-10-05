@@ -4,31 +4,35 @@
 // элементов массивов и выведите результат сравнения средних арифметических.
 
 
+//решение задачи через массив, незнаю насколько удачное
+
+
 //первый массив 
-int[] array = new int[9];
+int[] array = new int[8];
 for (int i = 0; i < array.Length; i++)
 { array[i] = new Random().Next(0, 100); }
 
+//вторичные массивы
+int[] arrayOdd = new int[array.Length / 2 + array.Length % 2]; //решение выглядит костылем, нужно для обработки первого массива с нечетным количеством элементов. иначе Index was outside the bounds of the array 
+int[] arrayEven = new int[array.Length / 2];
+int a = 0;
+int b = 0;
 
-//промежуточные списки
-List<int> listOdd = new List<int>();
-List<int> listEven = new List<int>();
 
-// распределение четных и нечетных значений по спискам
+// распределение четных и нечетных значений
 for (int i = 0; i < array.Length; i++)
 {
     if (i % 2 == 0)
     {
-        listOdd.Add(array[i]);
+        arrayOdd[a] = array[i];
+        a++;
     }
     else
     {
-        listEven.Add(array[i]);
+        arrayEven[b] = array[i];
+        b++;
     }
 }
-
-int[] arrayOdd = listOdd.ToArray();
-int[] arrayEven = listEven.ToArray();
 
 // функция вычисления среднего арифметического 
 double ArrayAverageSumm(int[] ArrayName)
